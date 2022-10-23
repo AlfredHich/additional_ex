@@ -22,46 +22,73 @@ namespace additional_ex
         static Address address = new Address(); // creating exemplar
         static void Main(string[] args)
         {
-            ValuesFromKeyBoard(); //call method for Address class
+            MainMenu();
             Console.ReadKey(); //delay
         }
+        /// <summary>
+        /// Menu       
+        /// </summary>
+        public static void MainMenu()
+        {
+            Console.WriteLine("Choose a variant for filling:");
+            Console.WriteLine("1) Index");
+            Console.WriteLine("2) Country");
+            Console.WriteLine("3) City");
+            Console.WriteLine("4) Street");
+            Console.WriteLine("5) House");
+            Console.WriteLine("6) Apartment");
+            Console.WriteLine("7) Exit programm");
+            Console.Write("Select a variant: ");
+            string MenuValue = Console.ReadLine();
+            Console.Clear();
+            if (MenuValue == "1")
+            {
+                Console.Write("Type index: ");
+                string index = Console.ReadLine();
+            }
+            else if (MenuValue == "2")
+            {
+                Console.Write("Type country: ");
+                string country = Console.ReadLine();
+            }
+            else if (MenuValue == "3")
+            {
+                Console.WriteLine("Type city: ");
+                string city = Console.ReadLine();
+            }
+            else if (MenuValue == "4")
+            {
+                Console.WriteLine("Type street");
+                string street = Console.ReadLine();    
+            }
+            else if (MenuValue == "5")
+            {
+                Console.WriteLine("Type house: ");
+                string house = Console.ReadLine();
+            }
+            else if (MenuValue == "6")
+            {
+                Console.WriteLine("Type apartment: ");
+                string apartment = Console.ReadLine();
+            }
 
-        public static void ValuesFromKeyBoard() //get values from keyboard
-        {
-            Console.Write("Введите номер индекса: ");
-            string index = Console.ReadLine(); //filling index value
-            ParsingValue(index); //method for parsing value
-            Console.Write("Введите название страны: ");
-            string country = Console.ReadLine(); //filling country value
-            ParsingValue(country); //method for parsing value
-            Console.Write("Введите название города: ");
-            string city = Console.ReadLine(); //filling city value
-            Console.Write("Введите название улицы: ");
-            string street = Console.ReadLine(); //filling steet value
-            Console.Write("Введите номер дома: ");
-            string house = Console.ReadLine(); //filling house value
-            Console.Write("Введите номер квартиры: ");
-            string apartment = Console.ReadLine(); //filling house value
-            address.Show(); //shows all address values
         }
-        public static void ParsingValue(string value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public static void ParsingValue(string value) // checks string or int
         {
+            Console.Clear();
             int x;
             if (Int32.TryParse(value, out x))
             {
-                
+
             }
             else
             {
 
             }
-
-        }
-        public static void ClearLine()
-        {
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
         }
     }
 }

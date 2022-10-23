@@ -22,13 +22,13 @@ namespace additional_ex
         //properities for fields
         public int Index
         {
-            
-             get
+
+            get
             { return index; }   //mutator
             set
-            {              
+            {
                 index = value; //accessor
-            }  
+            }
         }
         public string Country
         {
@@ -54,9 +54,9 @@ namespace additional_ex
         }
         public int Apartment
         {
-            
+
             private get //mutator
-            {                
+            {
                 return apartment;
             }
             set { apartment = value; }//accessor
