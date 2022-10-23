@@ -28,6 +28,8 @@ namespace additional_ex
         /// <summary>
         /// Menu       
         /// </summary>
+        /// ПОСОСИ
+
         public static void MainMenu()
         {
             Console.WriteLine("Choose a variant for filling:");
