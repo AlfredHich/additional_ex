@@ -25,11 +25,16 @@ namespace additional_ex
             MainMenu();
             Console.ReadKey(); //delay
         }
-        /// <summary>
-        /// Menu       
-        /// </summary>
-        /// ПОСОСИ
-
+        enum MenuOptions
+        {
+            exit = 0,
+            index = 1,
+            country = 2,
+            city = 3,
+            street = 4,
+            house = 5,
+            apartment = 6
+        }
         public static void MainMenu()
         {
             Console.WriteLine("Choose a variant for filling:");
@@ -39,58 +44,71 @@ namespace additional_ex
             Console.WriteLine("4) Street");
             Console.WriteLine("5) House");
             Console.WriteLine("6) Apartment");
-            Console.WriteLine("7) Exit programm");
+            Console.WriteLine("0) Exit programm");
             Console.Write("Select a variant: ");
-            string MenuValue = Console.ReadLine();
+            string inputValue;
+            int menuValue;
+            inputValue = Console.ReadLine();
+            while (!Int32.TryParse(inputValue, out menuValue))
+            {
+                Console.Write("Incorrect value, pls try again...");
+                inputValue = Console.ReadLine();
+            }
+            switch (menuValue)
+            {
+                case (int)MenuOptions.exit:
+                    Environment.Exit(0);
+                    break;
+                case (int)MenuOptions.index:
+                    Console.Write("Type index: ");
+                    string index = Console.ReadLine();
+                    break;
+            }
+                
+
             Console.Clear();
-            if (MenuValue == "1")
+            if (menuValue == "1")
             {
                 Console.Write("Type index: ");
                 string index = Console.ReadLine();
             }
-            else if (MenuValue == "2")
+            else if (menuValue == "2")
             {
                 Console.Write("Type country: ");
                 string country = Console.ReadLine();
             }
-            else if (MenuValue == "3")
+            else if (menuValue == "3")
             {
                 Console.WriteLine("Type city: ");
                 string city = Console.ReadLine();
             }
-            else if (MenuValue == "4")
+            else if (menuValue == "4")
             {
                 Console.WriteLine("Type street");
                 string street = Console.ReadLine();    
             }
-            else if (MenuValue == "5")
+            else if (menuValue == "5")
             {
                 Console.WriteLine("Type house: ");
                 string house = Console.ReadLine();
             }
-            else if (MenuValue == "6")
+            else if (menuValue == "6")
             {
                 Console.WriteLine("Type apartment: ");
                 string apartment = Console.ReadLine();
             }
 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        public static void ParsingValue(string value) // checks string or int
+
+        public int ValidateIntInput(string input, string fieldName) //checks string or int
         {
-            Console.Clear();
-            int x;
-            if (Int32.TryParse(value, out x))
+            int result;
+            while (!Int32.TryParse(input, out result))
             {
-
+                Console.Write("Incorrect value, pls try again...");
+                input = Console.ReadLine();
             }
-            else
-            {
-
-            }
+            return result;
         }
     }
 }
