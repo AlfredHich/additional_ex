@@ -11,12 +11,6 @@ using System.Threading.Tasks;
 
 namespace additional_ex
 {
-    /// <summary>
-    /// Main class
-    /// program have to fill address from user
-    /// Additional class: Address
-    /// Fields: index, country, city, street, house, apartment
-    /// </summary>
     internal class Program
     {
         static Address address = new Address(); // creating exemplar
@@ -25,11 +19,16 @@ namespace additional_ex
             MainMenu();
             Console.ReadKey(); //delay
         }
-        /// <summary>
-        /// Menu       
-        /// </summary>
-        /// ПОСОСИ
-
+        enum MenuOptions
+        {
+            exit = 0,
+            index = 1,
+            country = 2,
+            city = 3,
+            street = 4,
+            house = 5,
+            apartment = 6
+        }
         public static void MainMenu()
         {
             Console.WriteLine("Choose a variant for filling:");
@@ -52,13 +51,13 @@ namespace additional_ex
             }
             switch (menuValue)
             {
-                case (int)MenuOptions.exit:
-                    Environment.Exit(0);
+                case (int)MenuOptions.exit: //closing console
+                    ClosingConsole();
                     break;
                 case (int)MenuOptions.index: //int value
                     Console.Write("Type index: ");
                     string index = Console.ReadLine();
-                    ValidateIntInput(index,"index");
+                    ValidateIntInput(index, "index");
                     break;
                 case (int)MenuOptions.country: //string value
                     Console.WriteLine("Type country: ");
@@ -71,7 +70,7 @@ namespace additional_ex
                     break;
                 case (int)MenuOptions.street: //string value
                     Console.WriteLine("Type street: ");
-                    string street = Console.ReadLine(); 
+                    string street = Console.ReadLine();
                     break;
                 case (int)MenuOptions.house:  //int value
                     Console.WriteLine("Type house: ");
@@ -83,24 +82,17 @@ namespace additional_ex
                     break;
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        public static void ParsingValue(string value) // checks string or int
-        {
-            Console.Clear();
-            int x;
-            if (Int32.TryParse(value, out x))
-            {
+
 
         public static int ValidateIntInput(string input, string fieldName) //checks INT value
         {
             int result;
             while (!Int32.TryParse(input, out result))
             {
-
+                Console.Write("Incorrect value, pls try again...");
+                input = Console.ReadLine();
             }
+            return result;
         }
         public static string ValidateStringInput(string input, string fieldName)
         {
@@ -112,9 +104,11 @@ namespace additional_ex
             }
             return input;
         }
-        public void ClosingConsole()
+        public static void ClosingConsole()
         {
             Environment.Exit(0);
         }
+
     }
 }
+
