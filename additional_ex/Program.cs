@@ -41,39 +41,47 @@ namespace additional_ex
             Console.WriteLine("6) Apartment");
             Console.WriteLine("7) Exit programm");
             Console.Write("Select a variant: ");
-            string MenuValue = Console.ReadLine();
-            Console.Clear();
-            if (MenuValue == "1")
+            string inputValue;
+            int menuValue;
+            inputValue = Console.ReadLine();
+            while (!Int32.TryParse(inputValue, out menuValue)) //validate value from MainMenu
             {
-                Console.Write("Type index: ");
-                string index = Console.ReadLine();
+                Console.WriteLine("Incorrect value, pls try again...");
+                Console.ReadKey(); //delay                
+                inputValue = Console.ReadLine();
             }
-            else if (MenuValue == "2")
+            switch (menuValue)
             {
-                Console.Write("Type country: ");
-                string country = Console.ReadLine();
+                case (int)MenuOptions.exit:
+                    Environment.Exit(0);
+                    break;
+                case (int)MenuOptions.index: //int value
+                    Console.Write("Type index: ");
+                    string index = Console.ReadLine();
+                    ValidateIntInput(index,"index");
+                    break;
+                case (int)MenuOptions.country: //string value
+                    Console.WriteLine("Type country: ");
+                    string country = Console.ReadLine();
+                    ValidateStringInput(country, "country");
+                    break;
+                case (int)MenuOptions.city: //string value
+                    Console.WriteLine("Type city: ");
+                    string city = Console.ReadLine();
+                    break;
+                case (int)MenuOptions.street: //string value
+                    Console.WriteLine("Type street: ");
+                    string street = Console.ReadLine(); 
+                    break;
+                case (int)MenuOptions.house:  //int value
+                    Console.WriteLine("Type house: ");
+                    string house = Console.ReadLine();
+                    break;
+                case (int)MenuOptions.apartment: //int value
+                    Console.WriteLine("Type apartment: ");
+                    string apartment = Console.ReadLine();
+                    break;
             }
-            else if (MenuValue == "3")
-            {
-                Console.WriteLine("Type city: ");
-                string city = Console.ReadLine();
-            }
-            else if (MenuValue == "4")
-            {
-                Console.WriteLine("Type street");
-                string street = Console.ReadLine();    
-            }
-            else if (MenuValue == "5")
-            {
-                Console.WriteLine("Type house: ");
-                string house = Console.ReadLine();
-            }
-            else if (MenuValue == "6")
-            {
-                Console.WriteLine("Type apartment: ");
-                string apartment = Console.ReadLine();
-            }
-
         }
         /// <summary>
         /// 
@@ -86,11 +94,27 @@ namespace additional_ex
             if (Int32.TryParse(value, out x))
             {
 
-            }
-            else
+        public static int ValidateIntInput(string input, string fieldName) //checks INT value
+        {
+            int result;
+            while (!Int32.TryParse(input, out result))
             {
 
             }
+        }
+        public static string ValidateStringInput(string input, string fieldName)
+        {
+            int result;
+            while (int.TryParse(input, out result))
+            {
+                Console.Write("Incorrect value, pls try again...");
+                input = Console.ReadLine();
+            }
+            return input;
+        }
+        public void ClosingConsole()
+        {
+            Environment.Exit(0);
         }
     }
 }
